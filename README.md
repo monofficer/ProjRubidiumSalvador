@@ -54,4 +54,28 @@ stars denoting the archetype's proficiency in those attributes, these <br>
 could range from 1 to 5 stars, no more no less. below this is a warning, <br>
 often mixed with humour, that warns the user about the problem of the <br>
 archetype, whether that may be lack of speed, survivability, and more, <br>
-this warning will be put under a dropdown menu.
+this warning will be put under a dropdown menu. <br><br>
+
+_________________________________________________________________
+
+**Game Page** <br><br>
+
+The Game page, or more accurately, the Test Page, is a page made for <br>
+the user to really figure out what archetype suits them best. Now this <br>
+page, has the following layout. On the top of the web screen, is the <br>
+message "INPUT HOW MUCH YOU VALUE THESE STATS", Underneath is the three <br>
+basic stats, next to them is a text box where the user can input a priority <br>
+from 1-3 ONLY , below that is a submit button which will only work if all <br>
+conditions are met. below that is the message "YOUR ARCHETYPE IS" and <br>
+below it is a space where you can view what your archetype is, according <br>
+to how much you value the stats. To the left of this is a reminders space <br>
+where the user ir reminded that they can only have one of each position <br>
+(1, 2, 3) and that the information you input will only be kept until the <br>
+website is reset.
+
+_________________________________________________________________
+
+**REQUIRED FOR CS2 PROPOSAL** <br><br>
+Final Title: The Dark Triad
+Features: Interactable Custom image type buttons, a flickering screen with tv-like effects, a numerical input -> corresponding text output test, and (hopefully) "shaders" on the interface.
+Definition of done: The project is only truly done when the creator believes it is, but from an academic perspective, it is only done when I have all features working.
