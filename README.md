@@ -36,5 +36,22 @@ Above the symbols are the names of the nations connected to the symbols, The Sta
 United States of America, the symmetric cross being Germany, and the Hammer and Sickle <br>
 being the Union of Soviet Socialist Republics (The Soviet Union). Hovering<br>
 over the symbols shows the tooltip "Proceed to Information page" each <br>
-Nation has it's own information page.
+Nation has it's own information page. <br><br>
 
+_________________________________________________________________
+
+**Information Page** <br><br>
+
+The Information Page/s are three pages connected to a nation, each one <br>
+all having the same layout. On the top of the screen (The in-website screen <br>
+not the user's screen) is the symbol and name of the nation. below it <br>
+are 5 different symbols, all of which corresponding to actual Warthunder <br>
+symbols, under each symbol is the vehicle archetype. These are Light tanks, <br>
+Medium tanks, Heavy tanks, Anti Aircraft, and finally Tank destroyers. <br>
+Beneath each of these archetypes is three different attributes or <br>
+"stats" these are Speed, Armour, and Firepower, next to it is a set of <br>
+stars denoting the archetype's proficiency in those attributes, these <br>
+could range from 1 to 5 stars, no more no less. below this is a warning, <br>
+often mixed with humour, that warns the user about the problem of the <br>
+archetype, whether that may be lack of speed, survivability, and more, <br>
+this warning will be put under a dropdown menu.
