@@ -2,7 +2,9 @@
 
 The following information will always be subject to change, but as of the first official version, the following will be followed. <br>
 Initial Version: V1.0 (JANUARY 09 2026)<br>
-Current Version: V1.0<br><br><br>
+Current Version: V1.0<br>
+Canva link: https://www.canva.com/design/DAG9n6fnhvc/jqodtWKJ5tzMaZa1FvPHGQ/edit?utm_content=DAG9n6fnhvc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton <br><br><br>
+
 
 This made for all of the rare Warthunder players out there, you are my family.<br><br>
 _________________________________________________________________
@@ -79,3 +81,4 @@ _________________________________________________________________
 Final Title: The Dark Triad
 Features: Interactable Custom image type buttons, a flickering screen with tv-like effects, a numerical input -> corresponding text output test, and (hopefully) "shaders" on the interface.
 Definition of done: The project is only truly done when the creator believes it is, but from an academic perspective, it is only done when I have all features working.
+ 
