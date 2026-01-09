@@ -27,4 +27,14 @@ _________________________________________________________________
 
 **Homepage** <br><br>
 
+The Homepage, also known as the menu, is the mainpage as to where the <br>
+user is to directed to first.  Just like every other page, it follows <br>
+the Driver Vieport Mimicking Layout, the only difference being the <br>
+screen.  On the top of the screen, you have a question "<CHOOSE YOUR NATION"> <br>
+Below, is three different symbols, a Star, a symmetric cross, and a Hammer and Sickle. <br>
+Above the symbols are the names of the nations connected to the symbols, The Star is the  <br>
+United States of America, the symmetric cross being Germany, and the Hammer and Sickle <br>
+being the Union of Soviet Socialist Republics (The Soviet Union). Hovering<br>
+over the symbols shows the tooltip "Proceed to Information page" each <br>
+Nation has it's own information page.
 
