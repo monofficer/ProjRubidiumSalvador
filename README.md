@@ -30,7 +30,7 @@ The rest of the story will continue, according to your choices, there is a plann
 
 The user interface also changes according to the stage they are in, but by default,<br>
 the interface will have a simple image to show your location, and the ability to look<br>
-left and right, to continue stages, you can click the center of the screen.<br>
+left and right on certain pages; to continue stages, you can click the center of the screen.<br>
 When the user enters the training stage, they are given an inventory, simply just a<br>
 basic interface which shows how many items you have (uses text, not images)<br>
 The items in the inventory depletes and increases according to your choices,<br>
