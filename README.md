@@ -26,7 +26,7 @@ where on the way you must put on your gas mask, and if you dont on time, you die
 After you reach the frontline, you will enter your post and hold it until night comes,<br>
 that is when you pick to either stay in your post, or join your peers.<br><br>
 
-The rest of the story will continue, according to your choices, there is a planned 5 endings.<br><br>
+The rest of the story will continue, according to your choices, there is a planned 10 endings, some just alternates of the other.<br><br>
 
 The user interface also changes according to the stage they are in, but by default,<br>
 the interface will have a simple image to show your location, and the ability to look<br>
