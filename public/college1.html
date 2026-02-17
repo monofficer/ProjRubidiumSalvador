@@ -18,6 +18,7 @@
       text-align: center;
       cursor: pointer;
       overflow: hidden;
+      transition: background 0.5s ease;
   }
 
   h1 {
@@ -29,6 +30,13 @@
 
   #suspense {
       transition: color 0.2s ease;
+  }
+
+  #transitionText {
+      font-size: clamp(24px, 5vw, 48px);
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      display: none;
   }
 
   img {
@@ -49,6 +57,8 @@
 
 <img src="school.jpg" alt="School Photo">
 
+<div id="transitionText"></div>
+
 <audio id="bgAudio" loop>
     <source src="breathing.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
@@ -56,6 +66,7 @@
 
 <script>
 const suspenseEl = document.getElementById('suspense');
+const overlayText = document.getElementById('transitionText');
 const normalText = "This was your school";
 const glitchText = "HELL IS NEAR";
 const audio = document.getElementById('bgAudio');
@@ -76,7 +87,7 @@ setInterval(() => {
     if (Math.random() < 0.5) glitchMessage();
 }, 500);
 
-// ---- Click to advance ----
+// ---- Click triggers night → morning transition ----
 document.body.addEventListener('click', () => {
     // Start breathing audio on first click
     if(firstClick) {
@@ -84,9 +95,27 @@ document.body.addEventListener('click', () => {
         firstClick = false;
     }
 
-    // Go to next scene (college0.html)
-    window.location.href = "public/college0.html";
+    // Hide suspense text & image
+    suspenseEl.parentElement.style.display = "none";
+    overlayText.style.display = "block";
+
+    // First transition text: night
+    overlayText.textContent = "It was night";
+    overlayText.style.opacity = 1;
+
+    // After 2 seconds → morning
+    setTimeout(() => {
+        overlayText.textContent = "Then it was morning again";
+
+        // After another 2 seconds → next scene
+        setTimeout(() => {
+            window.location.href = "college0.html"; // next scene
+        }, 2000);
+
+    }, 2000);
+
 }, {once:true});
+
 </script>
 
 </body>

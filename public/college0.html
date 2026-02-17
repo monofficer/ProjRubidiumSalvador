@@ -18,6 +18,7 @@
       text-align: center;
       cursor: pointer;
       overflow: hidden;
+      transition: background 0.5s ease;
   }
 
   h1 {
@@ -51,43 +52,59 @@
 
 <audio id="bgAudio" loop>
     <source src="breathing.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
+</audio>
+
+<audio id="sobAudio">
+    <source src="sobbing.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 const suspenseEl = document.getElementById('suspense');
-const normalText = "Today's the day, look at your family";
-const glitchText = "HELL IS NEAR";
 const audio = document.getElementById('bgAudio');
+const sobAudio = document.getElementById('sobAudio');
 let firstClick = true;
 
 // ---- Glitching suspense text ----
+const normalText = "Today's the day, look at your family";
+const glitchText = "HELL IS NEAR";
+
 function glitchMessage() {
     suspenseEl.textContent = glitchText;
     suspenseEl.style.color = "red";
     setTimeout(() => {
         suspenseEl.textContent = normalText;
         suspenseEl.style.color = "white";
-    }, 300); // flash duration
+    }, 300);
 }
 
-// Random glitch every 0.5 seconds
 setInterval(() => {
-    if (Math.random() < 0.5) glitchMessage();
+    if(Math.random() < 0.5) glitchMessage();
 }, 500);
 
-// ---- Click to advance ----
+// ---- Click behavior: turns screen black + sobbing audio ----
 document.body.addEventListener('click', () => {
-    // Start breathing audio on first click
+    // Play breathing audio if not already playing
     if(firstClick) {
         audio.play().catch(e => console.log("Audio blocked:", e));
         firstClick = false;
     }
 
-    // Next scene: graduation / enlistment choice
-    window.location.href = "thedoor.html"; // adjust path to your enrollment choice page
-}, {once:true});
-</script>
+    // Immediately turn screen black
+    document.body.style.background = "black";
 
+    // Hide all content
+    suspenseEl.parentElement.style.display = "none";
+    document.querySelector('img').style.display = "none";
+
+    // Play sobbing audio
+    sobAudio.play().catch(e => console.log("Audio blocked:", e));
+
+    // After 5 seconds → go to the door/enlistment scene
+    setTimeout(() => {
+        window.location.href = "thedoor.html"; // change to your actual next file
+    }, 5000);
+}, {once:true});
+
+</script>
 </body>
 </html>
