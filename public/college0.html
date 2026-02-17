@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1 Day Left</title>
+<title>0 Day Left</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   body {
@@ -43,11 +43,11 @@
 <body>
 
 <h1>
-    1 Day Left<br>
-    <span id="suspense">This was your school</span>
+    0 Day Left<br>
+    <span id="suspense">Today's the day, look at your family</span>
 </h1>
 
-<img src="school.jpg" alt="School Photo">
+<img src="family.jpg" alt="Family Photo">
 
 <audio id="bgAudio" loop>
     <source src="breathing.mp3" type="audio/mpeg">
@@ -56,12 +56,12 @@
 
 <script>
 const suspenseEl = document.getElementById('suspense');
-const normalText = "This was your school";
+const normalText = "Today's the day, look at your family";
 const glitchText = "HELL IS NEAR";
 const audio = document.getElementById('bgAudio');
 let firstClick = true;
 
-// ---- Glitch text ----
+// ---- Glitching suspense text ----
 function glitchMessage() {
     suspenseEl.textContent = glitchText;
     suspenseEl.style.color = "red";
@@ -71,7 +71,7 @@ function glitchMessage() {
     }, 300); // flash duration
 }
 
-// Randomly glitch every 0.5 seconds
+// Random glitch every 0.5 seconds
 setInterval(() => {
     if (Math.random() < 0.5) glitchMessage();
 }, 500);
@@ -84,8 +84,8 @@ document.body.addEventListener('click', () => {
         firstClick = false;
     }
 
-    // Go to next scene (college0.html)
-    window.location.href = "public/college0.html";
+    // Next scene: graduation / enlistment choice
+    window.location.href = "thedoor.html"; // adjust path to your enrollment choice page
 }, {once:true});
 </script>
 
