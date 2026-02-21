@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Death Scene</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+      margin: 0;
+      background: black; /* can be changed to an image if needed */
+      color: white;
+      font-family: serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      text-align: center;
+      cursor: pointer;
+      overflow: hidden;
+  }
+
+  h1 {
+      font-weight: normal;
+      font-size: clamp(22px, 4vw, 42px);
+      line-height: 1.3;
+      margin: 0 20px;
+  }
+</style>
+</head>
+
+<body onclick="goNext()">
+
+<h1 id="deathText">
+  <!-- CHANGE THIS TEXT FOR EACH DEATH -->
+  The buzzing of planes was unmistakable.<br>
+  You never got to go back to your family.
+</h1>
+
+<script>
+function goNext() {
+    // Go to next scene (or restart)
+    window.location.href = "index.html"; // <-- change as needed>
+}
+</script>
+
+</body>
+</html>

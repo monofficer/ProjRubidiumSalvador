@@ -5,13 +5,13 @@
 <title>Enlistment</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!--this code was made by Nikolai Salvador of Rubidium 29, please dont steal :> -->
+
 <style>
   body {
       margin: 0;
       font-family: serif;
       overflow: hidden;
-
-      
       background: url("thedoor.jpg") no-repeat center center/cover;
   }
 
@@ -59,6 +59,34 @@
   .right:hover .choice-text {
       opacity: 1;
   }
+
+  /* Warm fade overlay */
+  #warmFade {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgb(32, 24, 21);
+      opacity: 0;
+      transition: opacity 2s ease;
+      pointer-events: none;
+      z-index: 998;
+  }
+
+  /* Full black overlay */
+  #blackout {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      opacity: 0;
+      transition: opacity 0.1s ease;
+      pointer-events: none;
+      z-index: 999;
+  }
 </style>
 </head>
 
@@ -66,20 +94,74 @@
 
 <h1>
 Here it is.<br><br>
-The Enlistment building.
+The Entrance to the Enlistment building. <br><br>
+You can still turn and walk away.<br><br><br>
+Is this truly what you want?
 </h1>
 
 <div class="split">
 
-  <div class="left" onclick="location.href='training.html'">
+  <!-- LEFT: ENLIST -->
+  <div class="left" onclick="enterBuilding()">
       <div class="choice-text">Enlist</div>
   </div>
 
-  <div class="right" onclick="location.href='death_bombed.html'">
+  <!-- RIGHT: REFUSE -->
+  <div class="right" onclick="walkAway()">
       <div class="choice-text">Refuse</div>
   </div>
 
 </div>
+
+<!-- Audio -->
+<audio id="doorSound">
+  <source src="door.wav" type="audio/mpeg">
+</audio>
+
+<audio id="footsteps">
+  <source src="footsteps.wav" type="audio/mpeg">
+</audio>
+
+<!-- Overlays -->
+<div id="warmFade"></div>
+<div id="blackout"></div>
+
+<script>
+function enterBuilding() {
+    const door = document.getElementById("doorSound");
+
+    door.play().catch(e => console.log(e));
+
+    setTimeout(() => {
+        window.location.href = "training.html";
+    }, 3200);
+}
+
+function walkAway() {
+    const steps = document.getElementById("footsteps");
+    const warmFade = document.getElementById("warmFade");
+    const blackout = document.getElementById("blackout");
+
+    // Start footsteps
+    steps.play().catch(e => console.log(e));
+
+    // Fade into warm eyes-closed overlay over 1s
+    warmFade.style.opacity = "0.7";
+
+    // After 25s, cut footsteps, blackout
+    setTimeout(() => {
+        steps.pause();
+        steps.currentTime = 0;
+        warmFade.style.opacity = "0"; // fade out warm color
+        blackout.style.opacity = "1";   // snap to black
+    }, 25000);
+
+    // After 27s (2s black), go to death page
+    setTimeout(() => {
+        window.location.href = "deathbombed.html";
+    }, 27000);
+}
+</script>
 
 </body>
 </html>
