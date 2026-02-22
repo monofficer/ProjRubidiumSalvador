@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Reflection</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+      margin: 0;
+      background: black no-repeat center center/cover;
+      font-family: serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      cursor: pointer;
+      transition: background 5s ease;
+  }
+
+  #text {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(24px, 5vw, 48px);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+  }
+
+  #blackFade {
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:black;
+      opacity:1;
+      transition: opacity 0.1s ease;
+      z-index: 999;
+  }
+</style>
+</head>
+<body>
+
+<div id="text">What have we done?</div>
+<div id="blackFade"></div>
+
+<!-- Add audio here -->
+<audio id="reflectionAudio">
+    <source src="wcry.wav" type="audio/mpeg">
+</audio>
+
+<script>
+const textEl = document.getElementById('text');
+const blackFade = document.getElementById('blackFade');
+const audio = document.getElementById('reflectionAudio');
+
+document.body.addEventListener('click', startScene, {once:true});
+
+function startScene() {
+    // Play audio immediately
+    audio.play().catch(e=>console.log("Audio blocked:", e));
+
+    // Show question
+    textEl.style.opacity = 1;
+
+    // After 1s, fade text out slowly as image fades in
+    setTimeout(()=>{
+        textEl.style.opacity = 0;
+        document.body.style.background = "url('body.png') center/cover no-repeat";
+    }, 1000);
+
+    // Fade black overlay out over 5 seconds
+    blackFade.style.transition = "opacity 5s ease";
+    blackFade.style.opacity = 0;
+
+    // After 5s fade + 10s wait → cut to black and go to ending1
+    setTimeout(()=>{
+        blackFade.style.transition = "none"; // instant cut
+        blackFade.style.opacity = 1;
+
+        setTimeout(()=>{
+            window.location.href = "ending1.html";
+        }, 500); // short delay after cut
+    }, 15000); // 5s fade + 10s display
+}
+</script>
+
+</body>
+</html>

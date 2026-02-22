@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trench Scene</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+      margin: 0;
+      font-family: serif;
+      overflow: hidden;
+      background: url("trenches_2.jpg") no-repeat center center/cover;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      cursor: pointer;
+  }
+
+  #sceneText {
+      font-size: clamp(24px, 4vw, 40px);
+      color: white;
+      text-shadow: 0 0 10px black;
+      opacity: 0;
+      transition: opacity 1s ease;
+  }
+
+  #blackFade {
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:black;
+      opacity: 1; /* start fully black */
+      transition: opacity 1s ease;
+      z-index: 999;
+      pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="sceneText">The entirety of the trenches were destroyed by artillery. Its time to go over the top.</div>
+<div id="blackFade"></div>
+
+<script>
+const sceneText = document.getElementById("sceneText");
+const blackFade = document.getElementById("blackFade");
+
+// Fade in from black
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        blackFade.style.opacity = 0; // fade into the background
+        sceneText.style.opacity = 1; // show text
+    }, 100); // slight delay to allow load
+});
+
+// Click to go to next trench page
+document.body.addEventListener('click', () => {
+    sceneText.style.opacity = 0;  // fade out text
+    blackFade.style.opacity = 1;   // fade to black
+    setTimeout(() => {
+        window.location.href = "leftnml.html"; // change to next page
+    }, 1000); // match the fade duration
+}, {once: true});
+</script>
+
+</body>
+</html>

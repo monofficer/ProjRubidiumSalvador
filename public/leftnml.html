@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Click for your gasmask!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+      margin: 0;
+      background: black no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: serif;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+  }
+
+  #text {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(24px, 5vw, 48px);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      color: red;
+      text-shadow: 0 0 10px black;
+  }
+
+  #blackFade {
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:black;
+      opacity:1;
+      transition: opacity 1s ease;
+      z-index: 998;
+  }
+</style>
+</head>
+<body>
+
+<div id="text"></div>
+<div id="blackFade"></div>
+
+<audio id="whistleSound">
+    <source src="charge.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const textEl = document.getElementById('text');
+const blackFade = document.getElementById('blackFade');
+const whistle = document.getElementById('whistleSound');
+
+let clicked = false;
+let flashInterval;
+
+// Start page: click anywhere to begin
+document.body.addEventListener('click', startPage, {once:true});
+
+function startPage() {
+    // Fade in from black
+    blackFade.style.opacity = 0;
+
+    // Show "foreshadowing lmao"
+    setTimeout(()=>{
+        textEl.textContent = "maybe it really is quiet out here...";
+        textEl.style.opacity = 1;
+
+        // Play whistling sound
+        whistle.play().catch(e => console.log(e));
+
+        // Hide text after 7s
+    setTimeout(()=>{
+        textEl.style.opacity = 0;
+        showGasmaskFlash();
+    }, 7400);
+
+    }, 1000);
+}
+
+function showGasmaskFlash() {
+    // Change background to gasmask alert scene
+    document.body.style.background = "url('Explosion.jpg') center/cover no-repeat";
+
+    // Start flashing text
+    const texts = ["GET TO COVER!", "DONT THINK JUST DO!"];
+    let index = 0;
+    textEl.textContent = texts[index];
+    textEl.style.opacity = 1;
+
+    flashInterval = setInterval(()=>{
+        index = (index + 1) % texts.length;
+        textEl.style.opacity = 0;
+        setTimeout(()=>{ 
+            textEl.textContent = texts[index];
+            textEl.style.opacity = 1;
+        }, 200);
+    }, 600); // 0.6s between switches
+
+    // Listen for click to put gasmask on
+    clicked = false;
+    const clickHandler = () => {
+        clicked = true;
+        clearInterval(flashInterval);
+        window.location.href = "captured.html";
+    };
+    document.body.addEventListener('click', clickHandler, {once:true});
+
+    // If 5 seconds pass without click → death
+    setTimeout(()=>{
+        if(!clicked){
+            clearInterval(flashInterval);
+            window.location.href = "deathgas.html";
+        }
+    }, 5000);
+}
+</script>
+
+</body>
+</html>

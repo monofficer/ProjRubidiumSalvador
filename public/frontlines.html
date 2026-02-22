@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Training Thoughts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+      margin: 0;
+      background: black no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: serif;
+      color: white;
+      text-align: center;
+  }
+
+  #thought {
+      position: absolute;
+      bottom: 10%;
+      font-size: clamp(18px, 3vw, 28px);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+  }
+
+  #blackFade {
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:black;
+      opacity:1;
+      transition: opacity 1s ease;
+      z-index: 998;
+  }
+</style>
+</head>
+<body>
+
+<div id="thought"></div>
+<div id="blackFade"></div>
+
+<script>
+const scenes = [
+  {background: "url('frontlines.jpg') center/cover no-repeat", text: "Every trudge was deep"},
+  {background: "url('frontlines2.jpg') center/cover no-repeat", text: "Every breath was sharp"},
+  {background: "url('frontlines3.jpg') center/cover no-repeat", text: "Every mile hurt"}
+];
+
+const thoughtEl = document.getElementById('thought');
+const blackFade = document.getElementById('blackFade');
+
+let current = 0;
+
+function showScene(index){
+    const scene = scenes[index];
+
+    // Fade to black first
+    blackFade.style.opacity = 1;
+
+    setTimeout(()=>{
+        // Change background
+        document.body.style.background = scene.background;
+
+        // Fade image in
+        blackFade.style.opacity = 0;
+    }, 500);
+
+    // Show thought after black
+    setTimeout(()=>{
+        thoughtEl.style.display = "block";
+        thoughtEl.textContent = scene.text;
+        thoughtEl.style.opacity = 1;
+    }, 1000);
+
+    // Auto next after 5 seconds
+    setTimeout(nextScene, 5000);
+}
+
+function nextScene(){
+    // Fade thought out
+    thoughtEl.style.opacity = 0;
+
+    setTimeout(()=>{
+        current++;
+        if(current < scenes.length){
+            showScene(current);
+        } else {
+            // Last scene: fade to black, then go to next page
+            blackFade.style.opacity = 1;
+            setTimeout(()=>{
+                window.location.href = "gasmask.html"; // Replace with your next page
+            }, 1000);
+        }
+    }, 500);
+}
+
+// Start sequence automatically on page load
+window.addEventListener('load', ()=>{
+    setTimeout(()=>{
+        blackFade.style.opacity = 0; // fade in from black
+        showScene(current);
+    }, 500);
+});
+</script>
+
+</body>
+</html>
