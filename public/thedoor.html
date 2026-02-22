@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!--this code was made by Nikolai Salvador of Rubidium 29, please dont steal :> -->
+<!-- im currently writing this at 8:43 pm, no one will EVER read this, im going so freaking insane HAHAHAHHAHAHAHHAHAHAHHAHAHAHHAHAHAHAHHAH genuinely going crazy, some of this code i wrote before, i dont know if im sleepy or awake or HAHAHAHAHAHHAH, o_o-->
 
 <style>
   body {
@@ -47,20 +48,15 @@
       transition: 0.2s;
   }
 
-  .left .choice-text {
-      left: 30px;
-  }
-
-  .right .choice-text {
-      right: 30px;
-  }
+  .left .choice-text { left: 30px; }
+  .right .choice-text { right: 30px; }
 
   .left:hover .choice-text,
   .right:hover .choice-text {
       opacity: 1;
   }
 
-  /* Warm fade overlay */
+  /* Warm eyes-closed overlay */
   #warmFade {
       position: fixed;
       top: 0;
@@ -71,11 +67,11 @@
       opacity: 0;
       transition: opacity 2s ease;
       pointer-events: none;
-      z-index: 998;
+      z-index: 1000;
   }
 
   /* Full black overlay */
-  #blackout {
+  #blackFade {
       position: fixed;
       top: 0;
       left: 0;
@@ -83,21 +79,28 @@
       height: 100%;
       background: black;
       opacity: 0;
-      transition: opacity 0.1s ease;
+      transition: opacity 2s ease;
       pointer-events: none;
-      z-index: 999;
+      z-index: 1001;
   }
+
+  
+  
 </style>
 </head>
 
 <body>
 
+
+    
 <h1>
 Here it is.<br><br>
 The Entrance to the Enlistment building. <br><br>
 You can still turn and walk away.<br><br><br>
 Is this truly what you want?
 </h1>
+
+
 
 <div class="split">
 
@@ -124,39 +127,45 @@ Is this truly what you want?
 
 <!-- Overlays -->
 <div id="warmFade"></div>
-<div id="blackout"></div>
+<div id="blackFade"></div>
 
 <script>
 function enterBuilding() {
+    const blackFade = document.getElementById("blackFade");
     const door = document.getElementById("doorSound");
 
+    // Play door sound
     door.play().catch(e => console.log(e));
 
+    // Fade to black overlay
+    blackFade.style.opacity = "1";
+
+    // After 2 seconds, go to training scene
     setTimeout(() => {
         window.location.href = "training.html";
-    }, 3200);
+    }, 2000);
 }
 
 function walkAway() {
     const steps = document.getElementById("footsteps");
     const warmFade = document.getElementById("warmFade");
-    const blackout = document.getElementById("blackout");
+    const blackFade = document.getElementById("blackFade");
 
-    // Start footsteps
+    // Play footsteps
     steps.play().catch(e => console.log(e));
 
-    // Fade into warm eyes-closed overlay over 1s
+    // Fade in warm eyes-closed overlay
     warmFade.style.opacity = "0.7";
 
-    // After 25s, cut footsteps, blackout
+    // After 25s, stop footsteps and fade to black
     setTimeout(() => {
         steps.pause();
         steps.currentTime = 0;
-        warmFade.style.opacity = "0"; // fade out warm color
-        blackout.style.opacity = "1";   // snap to black
+        warmFade.style.opacity = "0"; // remove warm fade
+        blackFade.style.opacity = "1"; // snap to black
     }, 25000);
 
-    // After 27s (2s black), go to death page
+    // After 27s (2s black), go to death scene
     setTimeout(() => {
         window.location.href = "deathbombed.html";
     }, 27000);
