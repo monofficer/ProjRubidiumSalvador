@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Click for your gasmask!</title>
+<title>h_n_m_n</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -50,7 +50,7 @@
 <div id="blackFade"></div>
 
 <audio id="whistleSound">
-    <source src="charge.mp3" type="audio/mpeg">
+    <source src="heavybreath.wav" type="audio/mpeg">
 </audio>
 
 <script>
@@ -70,7 +70,7 @@ function startPage() {
 
     // Show "foreshadowing lmao"
     setTimeout(()=>{
-        textEl.textContent = "maybe it really is quiet out here...";
+        textEl.textContent = "I can't live without them.";
         textEl.style.opacity = 1;
 
         // Play whistling sound
@@ -87,10 +87,10 @@ function startPage() {
 
 function showGasmaskFlash() {
     // Change background to gasmask alert scene
-    document.body.style.background = "url('Explosion.jpg') center/cover no-repeat";
+    document.body.style.background = "url('rope.png') center/cover no-repeat";
 
     // Start flashing text
-    const texts = ["GET TO COVER!", "DONT THINK JUST DO!"];
+    const texts = ["JUST DROP THE ROPE!", "DON'T DO IT, YOU STILL HAVE A LIFE!"];
     let index = 0;
     textEl.textContent = texts[index];
     textEl.style.opacity = 1;
@@ -109,7 +109,7 @@ function showGasmaskFlash() {
     const clickHandler = () => {
         clicked = true;
         clearInterval(flashInterval);
-        window.location.href = "stranded.html";
+        window.location.href = "survive.html";
     };
     document.body.addEventListener('click', clickHandler, {once:true});
 
@@ -117,7 +117,7 @@ function showGasmaskFlash() {
     setTimeout(()=>{
         if(!clicked){
             clearInterval(flashInterval);
-            window.location.href = "deathgun.html";
+            window.location.href = "deathhang.html";
         }
     }, 5000);
 }

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Training Sequence</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+      margin: 0;
+      background: url("powcamp.jpg") no-repeat center center/cover;
+      background-size: cover;
+      color: white;
+      font-family: serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+      cursor: pointer;
+  }
+
+  #overlayText {
+      font-size: clamp(24px, 5vw, 48px);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      text-shadow: 0 0 10px black;
+  }
+
+  /* Fade overlays */
+  #blackFade2, #finalBlack {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: black;
+      opacity: 1; /* start fully black for blackFade2 */
+      pointer-events: none;
+      z-index: 999;
+      transition: opacity 2s ease;
+  }
+
+  #finalBlack {
+      opacity: 0;
+  }
+</style>
+</head>
+<body>
+
+<div id="blackFade2"></div> <!-- Initial black fade -->
+<div id="overlayText"></div>
+<div id="finalBlack"></div> <!-- Fade at the end -->
+
+<audio id="bgAudio" loop>
+    <source src="breathing.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+const overlayText = document.getElementById('overlayText');
+const blackFade2 = document.getElementById('blackFade2');
+const finalBlack = document.getElementById('finalBlack');
+const audio = document.getElementById('bgAudio');
+
+const trainingTexts = [
+    "Nice, I've got myself some rope!.",
+    "I just have to wait for the right opportunity now",
+    "I know I can get out!",
+    "It's all about waiting, I think.",
+    "I think...",
+];
+
+let sequenceStarted = false;
+
+// Fade in page on load
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        blackFade2.style.opacity = "0"; // fade in to show background
+    }, 100);
+});
+
+// Start the text sequence on first click
+document.body.addEventListener('click', () => {
+    if(sequenceStarted) return;
+    sequenceStarted = true;
+
+    // Play audio
+    audio.play().catch(e => console.log("Audio blocked:", e));
+
+    overlayText.style.opacity = "1"; // show first line
+    let i = 0;
+    overlayText.textContent = trainingTexts[i];
+
+    function nextLine() {
+        i++;
+        if(i < trainingTexts.length) {
+            overlayText.style.opacity = "0";
+            setTimeout(() => {
+                overlayText.textContent = trainingTexts[i];
+                overlayText.style.opacity = "1";
+            }, 300);
+            setTimeout(nextLine, 5000);
+        } else {
+            finalBlack.style.opacity = "1";
+            setTimeout(() => {
+                window.location.href = "ceiling.html";
+            }, 2000);
+        }
+    }
+
+    setTimeout(nextLine, 5000);
+}, {once:true});
+</script>
+
+</body>
+</html>

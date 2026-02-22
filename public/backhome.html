@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Restricted Access</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+      margin: 0;
+      background: url("gungun.png") center/cover no-repeat;
+      height: 100vh;
+      overflow: hidden;
+  }
+
+  #blackFade {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      opacity: 1;
+      transition: opacity 3s ease;
+      z-index: 999;
+  }
+</style>
+</head>
+<body>
+
+<div id="blackFade"></div>
+
+<script>
+const blackFade = document.getElementById("blackFade");
+const correctPassword = "KAISER";
+
+// Start fade after page loads
+window.onload = () => {
+
+    // Fade from black to image
+    setTimeout(() => {
+        blackFade.style.opacity = 0;
+    }, 200);
+
+    // After fade completes (3s), ask for password
+    setTimeout(() => {
+
+        const answer = prompt("WAS IST DAS PASSWORD!?!");
+
+        if (answer === correctPassword) {
+            window.location.href = "ending2.html";
+        } else {
+            window.location.href = "deathgun.html";
+        }
+
+    }, 3200); // slightly longer than fade
+};
+</script>
+
+</body>
+</html>

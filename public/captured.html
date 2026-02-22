@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Stranded</title>
+<title>Captured</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -47,9 +47,9 @@
 
 <script>
 const scenes = [
-  {background: "url('eyesclosed.png') center/cover no-repeat", text: "My head hurts...."},
-  {background: "url('eyesclosed.png') center/cover no-repeat", text: "I was only with Kat...."},
-  {background: "url('eyesclosed.png') center/cover no-repeat", text: "Wait... where IS Kat?!"}
+  {background: "url('eyesclosed.png') center/cover no-repeat", text: "Gosh, something hit me...."},
+  {background: "url('eyesclosed.png') center/cover no-repeat", text: "Atleast my comrades said 'Tout va Bien!'...."},
+  {background: "url('eyesclosed.png') center/cover no-repeat", text: "Wait. That isn't German."}
 ];
 
 const thoughtEl = document.getElementById('thought');
@@ -94,7 +94,7 @@ function nextScene(){
             // Last scene: fade to black, then go to next page
             blackFade.style.opacity = 1;
             setTimeout(()=>{
-                window.location.href = "stealingfood.html"; // Replace with your next page
+                window.location.href = "powcamp.html"; // Replace with your next page
             }, 1000);
         }
     }, 500);
